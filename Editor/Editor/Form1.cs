@@ -18,11 +18,11 @@ namespace Editor
 
         private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult resultado;
+            DialogResult r;
             if (archivoguardado == false)
             {
-                resultado = saveFileDialogeditor.ShowDialog();
-                if (resultado == DialogResult.OK)
+                r = saveFileDialogeditor.ShowDialog();
+                if (r == DialogResult.OK)
                 {
                     filepatch = saveFileDialogeditor.FileName;
                     String texto = richTextBox1.Text;
@@ -30,6 +30,7 @@ namespace Editor
                     {
                         File.WriteAllText(filepatch, texto);
                         MessageBox.Show("Archivo Guardado correctamente");
+                        archivoguardado |= true;
                     }
                     catch (Exception ex)
                     {
@@ -106,20 +107,6 @@ namespace Editor
 
                     }
 
-                }
-            }
-            else
-            {
-                try
-                {
-                    String texto = richTextBox1.Text;
-                    File.WriteAllText(filepatch, texto);
-                    MessageBox.Show("Archivo guardado correctamente");
-                    archivoguardado = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Errps al guardar el archivo " + ex.Message);
                 }
             }
         }
